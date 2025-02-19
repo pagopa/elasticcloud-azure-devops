@@ -36,9 +36,9 @@ provider "azurerm" {
   subscription_id = data.azurerm_subscriptions.prod.subscriptions[0].subscription_id
 }
 
-module "__v4__" {
-  # https://github.com/pagopa/terraform-azurerm-v4/releases/tag/v1.5.0
-  source = "git::https://github.com/pagopa/terraform-azurerm-v4.git?ref=876158038b03d7a82ea437c56591154ab504d725"
+module "__v3__" {
+  # https://github.com/pagopa/terraform-azurerm-v3/releases/tag/v8.83.1
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git?ref=087a57940a67444c3b883030c54ceb78562c64ef"
 }
 
 module "__devops_v0__" {

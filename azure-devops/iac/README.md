@@ -12,7 +12,7 @@
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module___devops_v0__"></a> [\_\_devops\_v0\_\_](#module\_\_\_devops\_v0\_\_) | git::https://github.com/pagopa/azuredevops-tf-modules.git | 7e23d73d22e7b37352c25a32cc40f6f42b6569ea |
-| <a name="module___v4__"></a> [\_\_v4\_\_](#module\_\_\_v4\_\_) | git::https://github.com/pagopa/terraform-azurerm-v4.git | 876158038b03d7a82ea437c56591154ab504d725 |
+| <a name="module___v3__"></a> [\_\_v3\_\_](#module\_\_\_v3\_\_) | git::https://github.com/pagopa/terraform-azurerm-v3.git | 087a57940a67444c3b883030c54ceb78562c64ef |
 | <a name="module_dev_azurerm_iac_deploy_service_conn"></a> [dev\_azurerm\_iac\_deploy\_service\_conn](#module\_dev\_azurerm\_iac\_deploy\_service\_conn) | ./.terraform/modules/__devops_v0__/azuredevops_serviceendpoint_federated | n/a |
 | <a name="module_dev_azurerm_iac_plan_service_conn"></a> [dev\_azurerm\_iac\_plan\_service\_conn](#module\_dev\_azurerm\_iac\_plan\_service\_conn) | ./.terraform/modules/__devops_v0__/azuredevops_serviceendpoint_federated | n/a |
 | <a name="module_dev_secrets"></a> [dev\_secrets](#module\_dev\_secrets) | ./.terraform/modules/__v3__/key_vault_secrets_query | n/a |
