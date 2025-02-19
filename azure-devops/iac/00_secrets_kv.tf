@@ -1,26 +1,23 @@
-##
-## aca KEYVAULT
-##
-#
-#module "dev_secrets" {
-#  source = "./.terraform/modules/__v3__/key_vault_secrets_query"
-#
-#  for_each = { for d in local.domains : d.name => d if contains(d.envs, "d") && try(d.kv_name, "") != "" }
-#
-#  providers = {
-#    azurerm = azurerm.dev
-#  }
-#
-#  resource_group = format(each.value.rg_name, "d")
-#  key_vault_name = format(each.value.kv_name, "d")
-#
-#  secrets = [
-#    "p4pa-d-itn-dev-aks-azure-devops-sa-token",
-#    "p4pa-d-itn-dev-aks-azure-devops-sa-cacrt",
-#    "p4pa-d-itn-dev-aks-apiserver-url"
-#  ]
-#}
-#
+module "dev_secrets" {
+  source = "./.terraform/modules/__v3__/key_vault_secrets_query"
+
+  for_each = { for d in local.domains : d.name => d if contains(d.envs, "d") && try(d.kv_name, "") != "" }
+
+  providers = {
+    azurerm = azurerm.dev
+  }
+
+  resource_group = format(each.value.rg_name, "d", "dev")
+  key_vault_name = format(each.value.kv_name, "d", "dev")
+
+  secrets = flatten([for i in each.value.regions : [
+    "${each.value.target}-d-${i}-dev-aks-azure-devops-sa-token",
+    "${each.value.target}-d-${i}-dev-aks-azure-devops-sa-cacrt",
+    "${each.value.target}-d-${i}-dev-aks-apiserver-url",
+  ]])
+
+}
+
 #module "uat_secrets" {
 #  source = "./.terraform/modules/__v3__/key_vault_secrets_query"
 #

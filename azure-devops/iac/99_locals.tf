@@ -26,20 +26,24 @@ locals {
   #  aks_uat_platform_name  = "p4pa-u-itn-uat-aks"
   #  aks_prod_platform_name = "p4pa-p-itn-prod-aks"
   #
-  #  domains = [
-  #    {
-  #      name : "payhub",
-  #      envs : ["d", "u", "p"],
-  #      kv_name : "p4pa-%s-payhub-kv",
-  #      rg_name : "p4pa-%s-itn-payhub-sec-rg",
-  #      code_review : true,
-  #      deploy : true,
-  #      pipeline_prefix : "payhub-infra",
-  #      pipeline_path : "payhub-infrastructure",
-  #      repository : {
-  #        yml_prefix_name : "payhub"
-  #      }
-  #    },
+  domains = [
+    {
+      target : "pagopa"
+      name : "pagopa-resources-common",
+      envs : ["d"],
+      regions = ["weu", "itn"]
+      kv_name : "paymon-%s-pagopa-%s-kv",
+      rg_name : "paymon-%s-pagopa-%s-sec-rg",
+      code_review : true,
+      deploy : true,
+      pipeline_prefix : "pagopa-resources-common",
+      pipeline_path : "elastic\\resources-common",
+      repository : {
+        yml_prefix_name = "pagopa-res"
+        branch_name     = "refs/heads/aks-pipeline"
+      }
+    },
+  ]
   #    {
   #      name : "networking",
   #      envs : ["d", "u", "p"],
