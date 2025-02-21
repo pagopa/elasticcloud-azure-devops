@@ -12,7 +12,7 @@ resource "azuredevops_serviceendpoint_github" "azure_devops_github_ro" {
     personal_access_token = module.secrets.values["azure-devops-github-ro-TOKEN"].value
   }
   lifecycle {
-    ignore_changes = [description, authorization]
+    ignore_changes = [description]
   }
 }
 

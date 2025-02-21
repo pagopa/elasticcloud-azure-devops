@@ -21,15 +21,11 @@ locals {
   srv_endpoint_github_ro = "azure-devops-github-ro"
   srv_endpoint_github_rw = "azure-devops-github-rw"
   srv_endpoint_github_pr = "azure-devops-github-pr"
-  #
-  #  aks_dev_platform_name  = "p4pa-d-itn-dev-aks"
-  #  aks_uat_platform_name  = "p4pa-u-itn-uat-aks"
-  #  aks_prod_platform_name = "p4pa-p-itn-prod-aks"
-  #
+
   domains = [
     {
-      target : "pagopa"
       name : "pagopa-resources-common",
+      target : "pagopa"
       envs : ["d"],
       regions = ["weu", "itn"]
       kv_name : "paymon-%s-pagopa-%s-kv",
@@ -37,115 +33,39 @@ locals {
       code_review : true,
       deploy : true,
       pipeline_prefix : "pagopa-resources-common",
-      pipeline_path : "elastic\\resources-common",
+      pipeline_path : "elastic\\06-resources-common",
       repository : {
-        yml_prefix_name = "pagopa-res"
+        yml_prefix_name = "res-common"
         branch_name     = "refs/heads/aks-pipeline"
       }
     },
+    {
+      name : "pagopa-resources-app",
+      target : "pagopa"
+      envs : ["d"],
+      regions = ["weu", "itn"]
+      kv_name : "",
+      rg_name : "",
+      code_review : true,
+      deploy : true,
+      pipeline_prefix : "pagopa-resources-app",
+      pipeline_path : "elastic\\07-resources-app",
+      repository : {
+        yml_prefix_name = "res-app"
+        branch_name     = "refs/heads/aks-pipeline"
+      }
+    }
   ]
-  #    {
-  #      name : "networking",
-  #      envs : ["d", "u", "p"],
-  #      kv_name : "",
-  #      rg_name : "",
-  #      code_review : true,
-  #      deploy : true,
-  #      pipeline_prefix : "networking-infra",
-  #      pipeline_path : "networking-infrastructure",
-  #      repository : {
-  #        yml_prefix_name : "networking"
-  #      }
-  #    },
-  #    {
-  #      name : "security",
-  #      envs : ["d", "u", "p"],
-  #      kv_name : "",
-  #      rg_name : "",
-  #      code_review : true,
-  #      deploy : true,
-  #      pipeline_prefix : "security-infra",
-  #      pipeline_path : "security-infrastructure",
-  #      repository : {
-  #        yml_prefix_name : "security"
-  #      }
-  #    },
-  #    {
-  #      name : "packer",
-  #      envs : ["d", "u", "p"],
-  #      kv_name : "",
-  #      rg_name : "",
-  #      code_review : true,
-  #      deploy : true,
-  #      pipeline_prefix : "packer-infra",
-  #      pipeline_path : "packer-infrastructure",
-  #      repository : {
-  #        yml_prefix_name : "packer"
-  #      }
-  #    },
-  #    {
-  #      name : "core",
-  #      envs : ["d", "u", "p"],
-  #      kv_name : "",
-  #      rg_name : "",
-  #      code_review : true,
-  #      deploy : true,
-  #      pipeline_prefix : "core-infra",
-  #      pipeline_path : "core-infrastructure",
-  #      repository : {
-  #        yml_prefix_name : "core"
-  #      }
-  #    },
-  #    {
-  #      name : "monitoring",
-  #      envs : ["d", "u", "p"],
-  #      kv_name : "",
-  #      rg_name : "",
-  #      code_review : true,
-  #      deploy : true,
-  #      pipeline_prefix : "monitoring-infra",
-  #      pipeline_path : "monitoring-infrastructure",
-  #      repository : {
-  #        yml_prefix_name : "monitoring"
-  #      }
-  #    },
-  #    {
-  #      name : "platform",
-  #      envs : ["d", "u", "p"],
-  #      kv_name : "",
-  #      rg_name : "",
-  #      code_review : true,
-  #      deploy : true,
-  #      pipeline_prefix : "platform-infra",
-  #      pipeline_path : "platform-infrastructure",
-  #      repository : {
-  #        yml_prefix_name : "platform"
-  #      }
-  #    },
-  #    {
-  #      name : "payhub-api-spec",
-  #      envs : ["d", "u", "p"],
-  #      kv_name : "",
-  #      rg_name : "",
-  #      code_review : true,
-  #      deploy : true,
-  #      pipeline_prefix : "payhub-api-spec",
-  #      pipeline_path : "payhub-api-spec",
-  #      repository : {
-  #        name = "p4pa-infra-api-spec"
-  #        yml_prefix_name : "payhub"
-  #        branch_name = "refs/heads/main"
-  #      }
-  #    }
-  #  ]
-  #
-  #  domain_variables = {
-  #    payhub = {
-  #      iac_variables_cr : {},
-  #      iac_variables_secrets_cr : {},
-  #      iac_variables_deploy : {},
-  #      iac_variables_secrets_deploy : {}
-  #    }
-  #  }
+
+  domain_variables = {}
+
+  target_variables = {
+    "pagopa" = {
+      TF_POOL_NAME_DEV  = "pagopa-dev-linux-infra",
+      TF_POOL_NAME_UAT  = "pagopa-uat-linux-infra",
+      TF_POOL_NAME_PROD = "pagopa-prod-linux-infra",
+      TF_USE_AKS_SECOND = true
+    }
+  }
 
 }
