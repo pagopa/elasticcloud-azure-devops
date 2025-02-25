@@ -75,7 +75,7 @@ locals {
   ]
 
   pagopa_pipelines = [
-  {
+    {
       name : "pagopa-az-application",
       target : "pagopa"
       envs : ["d"],
@@ -83,7 +83,7 @@ locals {
       kv_name : "",
       rg_name : "",
       code_review : true,
-      deploy : true,
+      deploy : false,
       pipeline_prefix : "az-application",
       pipeline_path : "pagopa\\03-az-application",
       repository : {
