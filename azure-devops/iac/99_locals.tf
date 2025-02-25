@@ -140,6 +140,22 @@ locals {
       }
     },
     {
+      name : "pagopa-resources-deployment",
+      target : "pagopa"
+      envs : ["d"],
+      regions = []
+      kv_name : "",
+      rg_name : "",
+      code_review : true,
+      deploy : true,
+      pipeline_prefix : "pagopa-resources-deployment",
+      pipeline_path : "pagopa\\06-resources-deployment",
+      repository : {
+        yml_prefix_name = "elastic-resource-deployment"
+        branch_name     = "refs/heads/aks-pipeline"
+      }
+    },
+    {
       name : "pagopa-resources-app",
       target : "pagopa"
       envs : ["d"],
