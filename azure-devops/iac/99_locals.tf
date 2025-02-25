@@ -24,6 +24,22 @@ locals {
 
   paymon_pipelines = [
     {
+      name : "devops",
+      target : "paymon"
+      envs : ["d"],
+      regions = []
+      kv_name : "",
+      rg_name : "",
+      code_review : true,
+      deploy : true,
+      pipeline_prefix : "devops",
+      pipeline_path : "elastic\\00-devops",
+      repository : {
+        yml_prefix_name = "org-secret"
+        branch_name     = "refs/heads/aks-pipeline"
+      }
+    },
+    {
       name : "elastic-organization-secret",
       target : "paymon"
       envs : ["d"],
@@ -83,7 +99,7 @@ locals {
       kv_name : "",
       rg_name : "",
       code_review : true,
-      deploy : false,
+      deploy : false, # unable to apply because it need PIM permission
       pipeline_prefix : "az-application",
       pipeline_path : "pagopa\\03-az-application",
       repository : {
