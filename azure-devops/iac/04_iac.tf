@@ -183,7 +183,7 @@ module "iac_deploy" {
   ]
 }
 
-resource "azuredevops_build_folder_permissions" "app_pipelin_permission" {
+resource "azuredevops_build_folder_permissions" "app_pipeline_permission_to_target_group" {
   for_each = local.app_pipeline_permission
 
   depends_on = [module.iac_code_review, module.iac_deploy]
@@ -204,7 +204,7 @@ resource "azuredevops_build_folder_permissions" "app_pipelin_permission" {
     "ManageBuildQueue" : "Deny",
     "StopBuilds" : "Allow",
     "ViewBuildDefinition" : "Allow",
-    "EditBuildDefinition" : "Deny",
+    "EditBuildDefinition" : "Allow",
     "DeleteBuildDefinition" : "Deny",
     "AdministerBuildPermissions" : "NotSet"
   }
