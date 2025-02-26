@@ -182,3 +182,30 @@ module "iac_deploy" {
     module.prod_azurerm_iac_deploy_service_conn.service_endpoint_id,
   ]
 }
+
+resource "azuredevops_build_folder_permissions" "app_pipelin_permission" {
+  for_each = local.app_pipeline_permission
+
+  depends_on = [module.iac_code_review, module.iac_deploy]
+
+  project_id = data.azuredevops_project.project.id
+  path       = "\\${each.key}\\app"
+  principal  = data.azuredevops_group.target_group[each.key].id
+
+  permissions = {
+    "ViewBuilds" : "Allow",
+    "EditBuildQuality" : "Deny",
+    "RetainIndefinitely" : "Allow",
+    "DeleteBuilds" : "Deny",
+    "ManageBuildQualities" : "Deny",
+    "DestroyBuilds" : "Deny",
+    "UpdateBuildInformation" : "Deny",
+    "QueueBuilds" : "Allow",
+    "ManageBuildQueue" : "Deny",
+    "StopBuilds" : "Allow",
+    "ViewBuildDefinition" : "Allow",
+    "EditBuildDefinition" : "Deny",
+    "DeleteBuildDefinition" : "Deny",
+    "AdministerBuildPermissions" : "NotSet"
+  }
+}
