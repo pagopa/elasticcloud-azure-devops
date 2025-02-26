@@ -28,6 +28,7 @@
 
 | Name | Type |
 |------|------|
+| [azuredevops_build_folder_permissions.app_pipeline_permission_to_target_group](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/build_folder_permissions) | resource |
 | [azuredevops_check_approval.environments](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/check_approval) | resource |
 | [azuredevops_environment.environments](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/environment) | resource |
 | [azuredevops_serviceendpoint_github.azure_devops_github_pr](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/resources/serviceendpoint_github) | resource |
@@ -40,7 +41,9 @@
 | [azurerm_role_assignment.uat_apply_permissions](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) | resource |
 | [azurerm_role_assignment.uat_plan_permissions](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) | resource |
 | [azuredevops_group.admin](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/data-sources/group) | data source |
+| [azuredevops_group.target_group](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/data-sources/group) | data source |
 | [azuredevops_project.project](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/data-sources/project) | data source |
+| [azuredevops_project.target_project](https://registry.terraform.io/providers/microsoft/azuredevops/latest/docs/data-sources/project) | data source |
 | [azurerm_client_config.current](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/client_config) | data source |
 | [azurerm_subscriptions.dev](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/subscriptions) | data source |
 | [azurerm_subscriptions.prod](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/subscriptions) | data source |

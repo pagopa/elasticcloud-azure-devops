@@ -30,11 +30,11 @@ data "azuredevops_group" "admin" {
 
 data "azuredevops_project" "target_project" {
   for_each = local.app_pipeline_permission
-  name = each.value.project_name
+  name     = each.value.project_name
 }
 
 data "azuredevops_group" "target_group" {
-  for_each = local.app_pipeline_permission
+  for_each   = local.app_pipeline_permission
   project_id = data.azuredevops_project.target_project[each.key].id
   name       = each.value.team_name
 }
