@@ -130,7 +130,7 @@ locals {
     },
     {
       name : "${product_key}-resources-deployment",
-      target : "${product_key}"
+      target : "${product_conf.deployment}"
       envs : product_conf.envs,
       regions = []
       kv_name : "",
