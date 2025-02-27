@@ -1,4 +1,16 @@
 locals {
+  /*
+    ADD PRODUCTS HERE
+   */
+  products = {
+    pagopa : {
+      deployment : "pagopa",
+      regions : ["weu", "itn"],
+      envs : ["d"]
+    }
+  }
+
+  # static pipelines
   paymon_pipelines = [
     {
       name : "devops",
@@ -66,18 +78,8 @@ locals {
     }
   ]
 
-  /*
-    ADD PRODUCTS HERE
-   */
-  products = {
-    pagopa: {
-      deployment: "pagopa",
-      regions: ["weu", "itn"],
-      envs: ["d"]
-    }
-  }
-
-  product_pipelines = flatten([for product_key,product_conf in local.products: [
+  # product pipelines generated
+  product_pipelines = flatten([for product_key, product_conf in local.products : [
     {
       name : "${product_key}-az-application",
       target : "${product_key}"

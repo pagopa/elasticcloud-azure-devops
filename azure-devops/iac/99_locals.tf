@@ -23,7 +23,7 @@ locals {
   srv_endpoint_github_pr = "azure-devops-github-pr"
 
   domains = concat(
-    local.paymon_pipelines,      // common components
+    local.paymon_pipelines, // common components
     local.product_pipelines
     # local.pagopa_core_pipelines, // pagopa core components
     # local.pagopa_app_pipelines   // pagopa app components
