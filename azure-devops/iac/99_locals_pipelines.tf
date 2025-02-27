@@ -13,7 +13,7 @@ locals {
       pipeline_path : "elastic\\00-devops",
       repository : {
         yml_prefix_name = "org-secret"
-        branch_name     = "refs/heads/aks-pipeline"
+        branch_name     = "refs/heads/main"
       }
     },
     {
@@ -29,7 +29,7 @@ locals {
       pipeline_path : "elastic\\00-organization-secret",
       repository : {
         yml_prefix_name = "org-secret"
-        branch_name     = "refs/heads/aks-pipeline"
+        branch_name     = "refs/heads/main"
       }
     },
     {
@@ -45,7 +45,7 @@ locals {
       pipeline_path : "elastic\\01-elastic-organization",
       repository : {
         yml_prefix_name = "elastic-org"
-        branch_name     = "refs/heads/aks-pipeline"
+        branch_name     = "refs/heads/main"
       }
     },
     {
@@ -61,7 +61,7 @@ locals {
       pipeline_path : "elastic\\02-state-storage",
       repository : {
         yml_prefix_name = "state-storage"
-        branch_name     = "refs/heads/aks-pipeline"
+        branch_name     = "refs/heads/main"
       }
     }
   ]
@@ -80,7 +80,7 @@ locals {
       pipeline_path : "pagopa\\core\\03-az-application",
       repository : {
         yml_prefix_name = "az-app"
-        branch_name     = "refs/heads/aks-pipeline"
+        branch_name     = "refs/heads/main"
       }
     },
     {
@@ -96,7 +96,7 @@ locals {
       pipeline_path : "pagopa\\core\\04-elastic-deployment",
       repository : {
         yml_prefix_name = "elastic-deployment"
-        branch_name     = "refs/heads/aks-pipeline"
+        branch_name     = "refs/heads/main"
       }
     },
     {
@@ -112,7 +112,7 @@ locals {
       pipeline_path : "pagopa\\core\\05-elastic-secret",
       repository : {
         yml_prefix_name = "elastic-secret"
-        branch_name     = "refs/heads/aks-pipeline"
+        branch_name     = "refs/heads/main"
       }
     },
     {
@@ -128,7 +128,7 @@ locals {
       pipeline_path : "pagopa\\core\\06-resources-deployment",
       repository : {
         yml_prefix_name = "elastic-resource-deployment"
-        branch_name     = "refs/heads/aks-pipeline"
+        branch_name     = "refs/heads/main"
       }
     }
   ]
@@ -147,7 +147,7 @@ locals {
       pipeline_path : "pagopa\\app\\06-resources-common",
       repository : {
         yml_prefix_name = "res-common"
-        branch_name     = "refs/heads/aks-pipeline"
+        branch_name     = "refs/heads/main"
       }
     },
     {
@@ -163,7 +163,7 @@ locals {
       pipeline_path : "pagopa\\app\\07-resources-app",
       repository : {
         yml_prefix_name = "res-app"
-        branch_name     = "refs/heads/aks-pipeline"
+        branch_name     = "refs/heads/main"
       }
     }
   ]
