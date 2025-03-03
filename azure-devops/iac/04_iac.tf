@@ -60,28 +60,28 @@ module "iac_code_review" {
     } : {},
 
     contains(each.value.envs, "u") && try(each.value.kv_name, "") != "" ? {
-      tf_uat_aks_apiserver_url         = module.dev_secrets[each.value.name].values["${each.value.target}-u-${each.value.regions[0]}-uat-aks-apiserver-url"].value,
-      tf_uat_aks_azure_devops_sa_cacrt = module.dev_secrets[each.value.name].values["${each.value.target}-u-${each.value.regions[0]}-uat-aks-azure-devops-sa-cacrt"].value,
-      tf_uat_aks_azure_devops_sa_token = base64decode(module.dev_secrets[each.value.name].values["${each.value.target}-u-${each.value.regions[0]}-uat-aks-azure-devops-sa-token"].value),
+      tf_uat_aks_apiserver_url         = module.uat_secrets[each.value.name].values["${each.value.target}-u-${each.value.regions[0]}-uat-aks-apiserver-url"].value,
+      tf_uat_aks_azure_devops_sa_cacrt = module.uat_secrets[each.value.name].values["${each.value.target}-u-${each.value.regions[0]}-uat-aks-azure-devops-sa-cacrt"].value,
+      tf_uat_aks_azure_devops_sa_token = base64decode(module.uat_secrets[each.value.name].values["${each.value.target}-u-${each.value.regions[0]}-uat-aks-azure-devops-sa-token"].value),
       tf_uat_aks_name                  = "${each.value.target}-u-${each.value.regions[0]}-uat-aks"
     } : {},
     contains(each.value.envs, "u") && try(each.value.kv_name, "") != "" && length(each.value.regions) > 1 ? {
-      tf_second_uat_aks_apiserver_url         = module.dev_secrets[each.value.name].values["${each.value.target}-u-${each.value.regions[1]}-uat-aks-apiserver-url"].value,
-      tf_second_uat_aks_azure_devops_sa_cacrt = module.dev_secrets[each.value.name].values["${each.value.target}-u-${each.value.regions[1]}-uat-aks-azure-devops-sa-cacrt"].value,
-      tf_second_uat_aks_azure_devops_sa_token = base64decode(module.dev_secrets[each.value.name].values["${each.value.target}-u-${each.value.regions[1]}-uat-aks-azure-devops-sa-token"].value),
+      tf_second_uat_aks_apiserver_url         = module.uat_secrets[each.value.name].values["${each.value.target}-u-${each.value.regions[1]}-uat-aks-apiserver-url"].value,
+      tf_second_uat_aks_azure_devops_sa_cacrt = module.uat_secrets[each.value.name].values["${each.value.target}-u-${each.value.regions[1]}-uat-aks-azure-devops-sa-cacrt"].value,
+      tf_second_uat_aks_azure_devops_sa_token = base64decode(module.uat_secrets[each.value.name].values["${each.value.target}-u-${each.value.regions[1]}-uat-aks-azure-devops-sa-token"].value),
       tf_second_uat_aks_name                  = "${each.value.target}-u-${each.value.regions[1]}-uat-aks"
     } : {},
 
     contains(each.value.envs, "p") && try(each.value.kv_name, "") != "" ? {
-      tf_prod_apiserver_url         = module.dev_secrets[each.value.name].values["${each.value.target}-p-${each.value.regions[0]}-prod-aks-apiserver-url"].value,
-      tf_prod_azure_devops_sa_cacrt = module.dev_secrets[each.value.name].values["${each.value.target}-p-${each.value.regions[0]}-prod-aks-azure-devops-sa-cacrt"].value,
-      tf_prod_azure_devops_sa_token = base64decode(module.dev_secrets[each.value.name].values["${each.value.target}-p-${each.value.regions[0]}-prod-aks-azure-devops-sa-token"].value),
+      tf_prod_apiserver_url         = module.uat_secrets[each.value.name].values["${each.value.target}-p-${each.value.regions[0]}-prod-aks-apiserver-url"].value,
+      tf_prod_azure_devops_sa_cacrt = module.uat_secrets[each.value.name].values["${each.value.target}-p-${each.value.regions[0]}-prod-aks-azure-devops-sa-cacrt"].value,
+      tf_prod_azure_devops_sa_token = base64decode(module.uat_secrets[each.value.name].values["${each.value.target}-p-${each.value.regions[0]}-prod-aks-azure-devops-sa-token"].value),
       tf_prod_aks_name              = "${each.value.target}-p-${each.value.regions[0]}-prod-aks"
     } : {},
     contains(each.value.envs, "p") && try(each.value.kv_name, "") != "" && length(each.value.regions) > 1 ? {
-      tf_second_prod_aks_apiserver_url         = module.dev_secrets[each.value.name].values["${each.value.target}-p-${each.value.regions[1]}-prod-aks-apiserver-url"].value,
-      tf_second_prod_aks_azure_devops_sa_cacrt = module.dev_secrets[each.value.name].values["${each.value.target}-p-${each.value.regions[1]}-prod-aks-azure-devops-sa-cacrt"].value,
-      tf_second_prod_aks_azure_devops_sa_token = base64decode(module.dev_secrets[each.value.name].values["${each.value.target}-p-${each.value.regions[1]}-prod-aks-azure-devops-sa-token"].value),
+      tf_second_prod_aks_apiserver_url         = module.uat_secrets[each.value.name].values["${each.value.target}-p-${each.value.regions[1]}-prod-aks-apiserver-url"].value,
+      tf_second_prod_aks_azure_devops_sa_cacrt = module.uat_secrets[each.value.name].values["${each.value.target}-p-${each.value.regions[1]}-prod-aks-azure-devops-sa-cacrt"].value,
+      tf_second_prod_aks_azure_devops_sa_token = base64decode(module.uat_secrets[each.value.name].values["${each.value.target}-p-${each.value.regions[1]}-prod-aks-azure-devops-sa-token"].value),
       tf_second_prod_aks_name                  = "${each.value.target}-p-${each.value.regions[1]}-prod-aks"
     } : {},
     {
@@ -138,15 +138,15 @@ module "iac_deploy" {
     } : {},
 
     contains(each.value.envs, "u") && try(each.value.kv_name, "") != "" ? {
-      tf_uat_aks_apiserver_url         = module.dev_secrets[each.value.name].values["${each.value.target}-u-${each.value.regions[0]}-uat-aks-apiserver-url"].value,
-      tf_uat_aks_azure_devops_sa_cacrt = module.dev_secrets[each.value.name].values["${each.value.target}-u-${each.value.regions[0]}-uat-aks-azure-devops-sa-cacrt"].value,
-      tf_uat_aks_azure_devops_sa_token = base64decode(module.dev_secrets[each.value.name].values["${each.value.target}-u-${each.value.regions[0]}-uat-aks-azure-devops-sa-token"].value),
+      tf_uat_aks_apiserver_url         = module.uat_secrets[each.value.name].values["${each.value.target}-u-${each.value.regions[0]}-uat-aks-apiserver-url"].value,
+      tf_uat_aks_azure_devops_sa_cacrt = module.uat_secrets[each.value.name].values["${each.value.target}-u-${each.value.regions[0]}-uat-aks-azure-devops-sa-cacrt"].value,
+      tf_uat_aks_azure_devops_sa_token = base64decode(module.uat_secrets[each.value.name].values["${each.value.target}-u-${each.value.regions[0]}-uat-aks-azure-devops-sa-token"].value),
       tf_uat_aks_name                  = "${each.value.target}-u-${each.value.regions[0]}-uat-aks"
     } : {},
     contains(each.value.envs, "u") && try(each.value.kv_name, "") != "" && length(each.value.regions) > 1 ? {
-      tf_second_uat_aks_apiserver_url         = module.dev_secrets[each.value.name].values["${each.value.target}-u-${each.value.regions[1]}-uat-aks-apiserver-url"].value,
-      tf_second_uat_aks_azure_devops_sa_cacrt = module.dev_secrets[each.value.name].values["${each.value.target}-u-${each.value.regions[1]}-uat-aks-azure-devops-sa-cacrt"].value,
-      tf_second_uat_aks_azure_devops_sa_token = base64decode(module.dev_secrets[each.value.name].values["${each.value.target}-u-${each.value.regions[1]}-uat-aks-azure-devops-sa-token"].value),
+      tf_second_uat_aks_apiserver_url         = module.uat_secrets[each.value.name].values["${each.value.target}-u-${each.value.regions[1]}-uat-aks-apiserver-url"].value,
+      tf_second_uat_aks_azure_devops_sa_cacrt = module.uat_secrets[each.value.name].values["${each.value.target}-u-${each.value.regions[1]}-uat-aks-azure-devops-sa-cacrt"].value,
+      tf_second_uat_aks_azure_devops_sa_token = base64decode(module.uat_secrets[each.value.name].values["${each.value.target}-u-${each.value.regions[1]}-uat-aks-azure-devops-sa-token"].value),
       tf_second_uat_aks_name                  = "${each.value.target}-u-${each.value.regions[1]}-uat-aks"
     } : {},
 

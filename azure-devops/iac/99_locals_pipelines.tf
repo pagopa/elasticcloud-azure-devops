@@ -6,7 +6,7 @@ locals {
     pagopa : {
       deployment : "pagopa",
       regions : ["weu", "itn"],
-      envs : ["d"]
+      envs : ["d", "u"]
     }
   }
 
@@ -15,7 +15,7 @@ locals {
     {
       name : "devops",
       target : "paymon"
-      envs : ["d"],
+      envs : [],
       regions = []
       kv_name : "",
       rg_name : "",
@@ -24,14 +24,14 @@ locals {
       pipeline_prefix : "devops",
       pipeline_path : "elastic\\00-devops",
       repository : {
-        yml_prefix_name = "org-secret"
+        yml_prefix_name = "devops"
         branch_name     = "refs/heads/main"
       }
     },
     {
       name : "elastic-organization-secret",
       target : "paymon"
-      envs : ["d"],
+      envs : [],
       regions = []
       kv_name : "",
       rg_name : "",
@@ -63,7 +63,7 @@ locals {
     {
       name : "state-storage",
       target : "paymon"
-      envs : ["d"],
+      envs : [],
       regions = []
       kv_name : "",
       rg_name : "",
@@ -83,7 +83,7 @@ locals {
     {
       name : "${product_key}-az-application",
       target : "${product_key}"
-      envs : product_conf.envs,
+      envs : [],
       regions = []
       kv_name : "",
       rg_name : "",
@@ -99,7 +99,7 @@ locals {
     {
       name : "${product_key}-deployment",
       target : "${product_conf.deployment}"
-      envs : product_conf.envs,
+      envs : [],
       regions = []
       kv_name : "",
       rg_name : "",
@@ -115,7 +115,7 @@ locals {
     {
       name : "${product_key}-secret",
       target : "${product_key}"
-      envs : product_conf.envs,
+      envs : [],
       regions = []
       kv_name : "",
       rg_name : "",
@@ -131,7 +131,7 @@ locals {
     {
       name : "${product_key}-resources-deployment",
       target : "${product_conf.deployment}"
-      envs : product_conf.envs,
+      envs : [],
       regions = []
       kv_name : "",
       rg_name : "",
@@ -163,7 +163,7 @@ locals {
     {
       name : "${product_key}-resources-app",
       target : "${product_key}"
-      envs : product_conf.envs,
+      envs : [],
       regions = []
       kv_name : "",
       rg_name : "",
