@@ -19,16 +19,16 @@ module "dev_secrets" {
 }
 
 module "uat_secrets" {
- source = "./.terraform/modules/__v3__/key_vault_secrets_query"
+  source = "./.terraform/modules/__v3__/key_vault_secrets_query"
 
- for_each = { for d in local.domains : d.name => d if contains(d.envs, "u") && try(d.kv_name, "") != "" }
+  for_each = { for d in local.domains : d.name => d if contains(d.envs, "u") && try(d.kv_name, "") != "" }
 
- providers = {
-   azurerm = azurerm.uat
- }
+  providers = {
+    azurerm = azurerm.uat
+  }
 
- resource_group = format(each.value.rg_name, "u", "uat")
- key_vault_name = format(each.value.kv_name, "u", "uat")
+  resource_group = format(each.value.rg_name, "u", "uat")
+  key_vault_name = format(each.value.kv_name, "u", "uat")
 
   secrets = flatten([for i in each.value.regions : [
     "${each.value.target}-u-${i}-uat-aks-azure-devops-sa-token",
