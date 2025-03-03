@@ -23,6 +23,7 @@
 | <a name="module_secrets"></a> [secrets](#module\_secrets) | ./.terraform/modules/__v3__/key_vault_secrets_query | n/a |
 | <a name="module_uat_azurerm_iac_deploy_service_conn"></a> [uat\_azurerm\_iac\_deploy\_service\_conn](#module\_uat\_azurerm\_iac\_deploy\_service\_conn) | ./.terraform/modules/__devops_v0__/azuredevops_serviceendpoint_federated | n/a |
 | <a name="module_uat_azurerm_iac_plan_service_conn"></a> [uat\_azurerm\_iac\_plan\_service\_conn](#module\_uat\_azurerm\_iac\_plan\_service\_conn) | ./.terraform/modules/__devops_v0__/azuredevops_serviceendpoint_federated | n/a |
+| <a name="module_uat_secrets"></a> [uat\_secrets](#module\_uat\_secrets) | ./.terraform/modules/__v3__/key_vault_secrets_query | n/a |
 
 ## Resources
 
