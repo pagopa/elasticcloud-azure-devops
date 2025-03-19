@@ -151,9 +151,9 @@ module "iac_deploy" {
     } : {},
 
     contains(each.value.envs, "p") && try(each.value.kv_name, "") != "" ? {
-      tf_prod_apiserver_url         = module.prod_secrets[each.value.name].values["${each.value.target}-p-${each.value.regions[0]}-prod-aks-apiserver-url"].value,
-      tf_prod_azure_devops_sa_cacrt = module.prod_secrets[each.value.name].values["${each.value.target}-p-${each.value.regions[0]}-prod-aks-azure-devops-sa-cacrt"].value,
-      tf_prod_azure_devops_sa_token = base64decode(module.prod_secrets[each.value.name].values["${each.value.target}-p-${each.value.regions[0]}-prod-aks-azure-devops-sa-token"].value),
+      tf_prod_aks_apiserver_url         = module.prod_secrets[each.value.name].values["${each.value.target}-p-${each.value.regions[0]}-prod-aks-apiserver-url"].value,
+      tf_prod_aks_azure_devops_sa_cacrt = module.prod_secrets[each.value.name].values["${each.value.target}-p-${each.value.regions[0]}-prod-aks-azure-devops-sa-cacrt"].value,
+      tf_prod_aks_azure_devops_sa_token = base64decode(module.prod_secrets[each.value.name].values["${each.value.target}-p-${each.value.regions[0]}-prod-aks-azure-devops-sa-token"].value),
       tf_prod_aks_name              = "${each.value.target}-p-${each.value.regions[0]}-prod-aks"
     } : {},
     contains(each.value.envs, "p") && try(each.value.kv_name, "") != "" && length(each.value.regions) > 1 ? {
