@@ -6,7 +6,7 @@ locals {
     pagopa : {
       deployment : "pagopa",
       regions : ["weu", "itn"],
-      envs : ["d", "u"]
+      envs : ["d", "u", "p"]
     }
   }
 
