@@ -147,10 +147,10 @@ locals {
     {
       name : "${product_key}-resources-common",
       target : "${product_key}"
-      envs : product_conf.envs,
-      regions = product_conf.regions,
-      kv_name : "paymon-%s-${product_key}-%s-kv",
-      rg_name : "paymon-%s-${product_key}-%s-sec-rg",
+      envs : [],
+      regions = []
+      kv_name : "",
+      rg_name : "",
       code_review : true,
       deploy : true,
       pipeline_prefix : "${product_key}-resources-common",
@@ -173,6 +173,22 @@ locals {
       pipeline_path : "${product_key}\\app\\07-resources-app",
       repository : {
         yml_prefix_name = "res-app"
+        branch_name     = "refs/heads/main"
+      }
+    },
+    {
+      name : "${product_key}-resources-integration",
+      target : "${product_key}"
+      envs : product_conf.envs,
+      regions = product_conf.regions,
+      kv_name : "paymon-%s-${product_key}-%s-kv",
+      rg_name : "paymon-%s-${product_key}-%s-sec-rg",
+      code_review : true,
+      deploy : true,
+      pipeline_prefix : "${product_key}-resources-integration",
+      pipeline_path : "${product_key}\\app\\08-resources-integration",
+      repository : {
+        yml_prefix_name = "res-integration"
         branch_name     = "refs/heads/main"
       }
     }
