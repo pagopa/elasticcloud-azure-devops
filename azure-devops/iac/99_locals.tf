@@ -38,11 +38,29 @@ locals {
     }
   }
 
+  # each folder can be shared by multiple teams (project_name + team_name)
   app_pipeline_permission = {
-    "pagopa" = {
-      project_name = "pagoPA-iac"
-      team_name    = "pagoPA-iac Team"
-    }
+    "pagopa" = [
+      {
+        project_name = "pagoPA-iac"
+        team_name    = "pagoPA-iac Team"
+      },
+      {
+        project_name = "pagoPA-projects"
+        team_name    = "pagopa-projects-externals-team"
+      }
+    ]
   }
+
+  # flattened map so each folder/team pair gets its own unique key, usable with for_each
+  app_pipeline_permission_flat = merge([
+    for folder, teams in local.app_pipeline_permission : {
+      for team in teams : "${folder}-${team.project_name}-${team.team_name}" => {
+        folder       = folder
+        project_name = team.project_name
+        team_name    = team.team_name
+      }
+    }
+  ]...)
 
 }
