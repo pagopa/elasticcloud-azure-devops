@@ -76,7 +76,7 @@ module "iac_code_review" {
       tf_prod_aks_apiserver_url         = module.prod_secrets[each.value.name].values["${each.value.target}-p-${each.value.regions[0]}-prod-aks-apiserver-url"].value,
       tf_prod_aks_azure_devops_sa_cacrt = module.prod_secrets[each.value.name].values["${each.value.target}-p-${each.value.regions[0]}-prod-aks-azure-devops-sa-cacrt"].value,
       tf_prod_aks_azure_devops_sa_token = base64decode(module.prod_secrets[each.value.name].values["${each.value.target}-p-${each.value.regions[0]}-prod-aks-azure-devops-sa-token"].value),
-      tf_prod_aks_name              = "${each.value.target}-p-${each.value.regions[0]}-prod-aks"
+      tf_prod_aks_name                  = "${each.value.target}-p-${each.value.regions[0]}-prod-aks"
     } : {},
     contains(each.value.envs, "p") && try(each.value.kv_name, "") != "" && length(each.value.regions) > 1 ? {
       tf_second_prod_aks_apiserver_url         = module.prod_secrets[each.value.name].values["${each.value.target}-p-${each.value.regions[1]}-prod-aks-apiserver-url"].value,
@@ -184,12 +184,12 @@ module "iac_deploy" {
 }
 
 resource "azuredevops_build_folder_permissions" "app_pipeline_permission_to_target_group" {
-  for_each = local.app_pipeline_permission
+  for_each = local.app_pipeline_permission_flat
 
   depends_on = [module.iac_code_review, module.iac_deploy]
 
   project_id = data.azuredevops_project.project.id
-  path       = "\\${each.key}\\app"
+  path       = "\\${each.value.folder}\\app"
   principal  = data.azuredevops_group.target_group[each.key].id
 
   permissions = {
